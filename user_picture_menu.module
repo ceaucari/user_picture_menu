@@ -33,7 +33,6 @@ function user_picture_menu_block_view($delta = '') {
                     $menutree = menu_tree_all_data('user-menu');
                     $links = array();
                     foreach($menutree as $item) {
-                        dsm($item);
                         $links []= array(
                             '#title' => $item['link']['title'],
                             '#href' => $item['link']['href'],
