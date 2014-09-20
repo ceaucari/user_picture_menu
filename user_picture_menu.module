@@ -15,10 +15,8 @@ function user_picture_menu_block_info() {
 function user_picture_menu_block_view($delta = '') {
     // This example is adapted from node.module.
     $block = array();
-
     switch ($delta) {
         case 'user_picture':
-
             global $user;
             if(isset($user->uid)){
                 $loggeduser = user_load($user->uid);
@@ -30,14 +28,36 @@ function user_picture_menu_block_view($delta = '') {
                 );
                 $html = '<h2>'.$name.'</h2>';
                 $html = $html.theme('image_style', $userimage);
-
+                /* Load Drupal's user menu */
+                if(menu_load('user-menu')) {
+                    $menutree = menu_tree_all_data('user-menu');
+                    $links = array();
+                    foreach($menutree as $item) {
+                        dsm($item);
+                        $links []= array(
+                            '#title' => $item['link']['title'],
+                            '#href' => $item['link']['href'],
+                        );
+                    }
+                    function _theme_link($links){
+                        $string = '';
+                        foreach($links as $link) {
+                            $string = $string.'<li>'.l($link['#title'],$link['#href']).'</li>';
+                        }
+                        return $string;
+                    }
+                    $html = $html.'<br/><a class="user-menu-toggler">Menu</a>';
+                    $html = $html.'<ul class="user-items" style="display:none">';
+                    $html = $html._theme_link($links);
+                    $html = $html.'</ul>';
+                    $path = drupal_get_path('module','user_picture_menu');
+                    drupal_add_js($path.'/js/user_picture_menu.js',null);
+                }
             } else {
                 $html = 'Hello stranger';
             }
-
             $block['subject'] = t('Welcome');
             $block['content'] = $html;
-
             break;
     }
     return $block;
