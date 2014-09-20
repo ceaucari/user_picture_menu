@@ -1,8 +1,6 @@
-User picture menu
+User Picture Menu
 
-A tiny module to create a block with the logged on user's picture,
-wich toggles the visibility of the user menu in drupal.
-
-After installation, go to Site Building > Blocks and enable the block. 
+A drupal module to create a block with the logged on user's picture,
+wich toggles the visibility of the user menu.
 
  
