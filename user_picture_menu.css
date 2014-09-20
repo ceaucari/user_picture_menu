@@ -1,12 +1,4 @@
-/*
- * user_picture_menu.css : Default CSS for this module
-  float: left;
- */
 
-/* Block with enough space for a reduced picture. 
-   Margin-top '10 since no heading 
-   increase height to say 90, if there are User Badges
- */
 .user_picture_menu {
   height: 90px;
   margin-top: 0px;
