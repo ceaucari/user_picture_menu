@@ -1,2 +1,44 @@
 <?php
+/*
+ * Implements hook_block_info();
+ */
+function user_picture_menu_block_info() {
+    $blocks['user_picture'] = array(
+        'info' => t('(user_picture_menu) Block that shows the username and picture of the current logged user.'),
+        'cache' => DRUPAL_NO_CACHE,
+    );
+    return $blocks;
+}
+/*
+ * Implements hook_block_view();
+ */
+function user_picture_menu_block_view($delta = '') {
+    // This example is adapted from node.module.
+    $block = array();
 
+    switch ($delta) {
+        case 'user_picture':
+
+            global $user;
+            if(isset($user->uid)){
+                $loggeduser = user_load($user->uid);
+                $name = $loggeduser->name;
+                $userphotouri = $loggeduser->picture->uri;
+                $userimage = array(
+                    'style_name' => 'thumbnail',
+                    'path' => $userphotouri,
+                );
+                $html = '<h2>'.$name.'</h2>';
+                $html = $html.theme('image_style', $userimage);
+
+            } else {
+                $html = 'Hello stranger';
+            }
+
+            $block['subject'] = t('Welcome');
+            $block['content'] = $html;
+
+            break;
+    }
+    return $block;
+}
