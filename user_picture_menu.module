@@ -17,8 +17,9 @@ function user_picture_menu_block_view($delta = '') {
     $block = array();
     switch ($delta) {
         case 'user_picture':
-            global $user;
-            if(isset($user->uid)){
+
+            if(!user_is_anonymous()){
+                global $user;
                 $loggeduser = user_load($user->uid);
                 $name = $loggeduser->name;
                 $userphotouri = $loggeduser->picture->uri;
