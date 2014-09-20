@@ -1,8 +1,5 @@
-; $Id: user_picture_block.info,v 1.4 2011/02/08 06:44:13 boran Exp $
-; Originally: Sean Boran 17.7.10
-
 name = User picture menu
-description = A usre menu in a block with the current user's picture.
+description = A block with the current user picture wich toggles the user menu.
 configure = admin/structure/block
 package = "User interface"
 version = "7.x-1.x-dev"
