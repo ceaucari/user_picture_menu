@@ -4,7 +4,7 @@
  */
 function user_picture_menu_block_info() {
     $blocks['user_picture'] = array(
-        'info' => t('(user_picture_menu) Block that shows the username and picture of the current logged user.'),
+        'info' => t('User picture menu'),
         'cache' => DRUPAL_NO_CACHE,
     );
     return $blocks;
@@ -27,8 +27,10 @@ function user_picture_menu_block_view($delta = '') {
                     'style_name' => 'thumbnail',
                     'path' => $userphotouri,
                 );
-                $html = '<h2>'.$name.'</h2>';
+                $html = '<div class=user-name><h2>'.$name.'</h2></div>';
                 $html = $html.theme('image_style', $userimage);
+
+
                 /* Load Drupal's user menu */
                 if(menu_load('user-menu')) {
                     $menutree = menu_tree_all_data('user-menu');
@@ -46,17 +48,20 @@ function user_picture_menu_block_view($delta = '') {
                         }
                         return $string;
                     }
-                    $html = $html.'<br/><a class="user-menu-toggler">Menu</a>';
+                    $html = $html.'<br/><a class="user-menu-toggler"></a>';
                     $html = $html.'<ul class="user-items" style="display:none">';
                     $html = $html._theme_link($links);
                     $html = $html.'</ul>';
                     $path = drupal_get_path('module','user_picture_menu');
                     drupal_add_js($path.'/js/user_picture_menu.js',null);
+                    drupal_add_css($path.'/user_picture_menu.css',null);
                 }
-            } else {
-                $html = 'Hello stranger';
+            } else { /* not logged in, point to login */
+                     $block['content'] = t('!user_link or !register_link', 
+                     array('!user_link' => l(t('Login'), 'user'),
+                       '!register_link' => l(t('Register'), 'user/register')));
+                     return $block;
             }
-            $block['subject'] = t('Welcome');
             $block['content'] = $html;
             break;
     }

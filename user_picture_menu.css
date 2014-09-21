@@ -1,41 +1,55 @@
-
-.user_picture_menu {
-  height: 90px;
-  margin-top: 0px;
-}
-*+html .user_picture_menu {  /* IE7 */
-  margin-top: 10px;
-}
-* html .user_picture_menu {  /* IE6 */
-  margin-top: 10px;
-}
-.user_picture_menu h3 { 
-  margin-top: 0.7em;
-  margin-bottom: 0.2em;
-}
-*+html .user_picture_menu h3 { /* IE7 */
-  margin-top: 0.2em;
+/*.block-user-picture-menu {
+  background-color: yellow;
+  display: block;
+  height: 80px;
 }
 
+.block-user-picture-menu .content {
+  display: block;
+  height: 40px;
+  width: 40px;
+}*/
 
-.user_picture_menu .picture {
-  float: left;
-}
-.user_picture_menu .picture img {
-  margin-right: 8px;
-  width:  60px;
-  height: 60px;
-  margin-bottom: 5px;
-}
-*+html .user_picture_menu .picture img { /* IE7 */
-  margin-bottom: 5px;
-}
-.user_picture_menu .userlevel {
-}
-.user_picture_menu .userpoints {
-}
-.user_picture_menu .userbadges {
-  /*clear: left;*/
-  margin-top: 5px;
+.block-user-picture-menu .user-name {
+  display: block;
+  height: 40px;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  color: #555;
+  background-color: #fff;
+  float: left;  /* if you want to invert picture-name order just float to the right */
 }
 
+.block-user-picture-menu img {
+  display: block;
+  height: 40px;
+  width: 40px;
+}
+
+.block-user-picture-menu .user-menu-toggler {
+/*background-color: red;*/
+  display: block;
+  height: 40px;
+  width: 120px;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+}
+
+.block-user-picture-menu .user-items {
+  position: absolute;
+  top: 45px;
+  background-color: #fff;
+  width: 120px;
+  padding-left: 5px;
+}
+
+.block-user-picture-menu .user-items li{
+  display: block;
+}
+
+.block-user-picture-menu .user-items a{
+  display: block;
+  color: #000;
+}
