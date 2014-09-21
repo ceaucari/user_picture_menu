@@ -13,11 +13,9 @@ function user_picture_menu_block_info() {
  * Implements hook_block_view();
  */
 function user_picture_menu_block_view($delta = '') {
-    // This example is adapted from node.module.
     $block = array();
     switch ($delta) {
         case 'user_picture':
-
             if(!user_is_anonymous()){
                 global $user;
                 $loggeduser = user_load($user->uid);
@@ -29,9 +27,7 @@ function user_picture_menu_block_view($delta = '') {
                 );
                 $html = '<div class=user-name><h2>'.$name.'</h2></div>';
                 $html = $html.theme('image_style', $userimage);
-
-
-                /* Load Drupal's user menu */
+                // Load Drupal's user menu
                 if(menu_load('user-menu')) {
                     $menutree = menu_tree_all_data('user-menu');
                     $links = array();
@@ -57,10 +53,10 @@ function user_picture_menu_block_view($delta = '') {
                     drupal_add_css($path.'/user_picture_menu.css',null);
                 }
             } else { /* not logged in, point to login */
-                     $block['content'] = t('!user_link or !register_link', 
-                     array('!user_link' => l(t('Login'), 'user'),
-                       '!register_link' => l(t('Register'), 'user/register')));
-                     return $block;
+                $block['content'] = t('!user_link or !register_link',
+                    array('!user_link' => l(t('Login'), 'user'),
+                    '!register_link' => l(t('Register'), 'user/register')));
+                return $block;
             }
             $block['content'] = $html;
             break;
